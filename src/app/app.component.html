@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<style>
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    align-items: center;
+    background-color: #9b59b6;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .content {
+    margin: 82px auto 42px;
+    margin-left: 15%;    max-width: 70%;
+    padding: 0 16px;
+    width: 100%;
+    text-align: center;
+  }
+
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  
+  <h1>{{ title }}</h1>
+   
+</div>
+
+<div class="content" role="main">
+  <br><br>
+    <h2>
+      Welcome in our Live Chat :  
+    </h2>
+    <br>
+    <hr style="color: #9b59b6;">
+
+<div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" [(ngModel)]="user" class="form-control" id="username" placeholder="Enter username">
+                <!-- <small id="userHelp" class="form-text text-muted">Type your username.</small> -->
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <label for="roomInput">Choose room</label>
+            <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
+                <option value="Lobby">Lobby</option>
+                <option value="Hall">Hall</option>
+                <option value="Deluxe">Deluxe</option>
+            </select>
+        </div>
+        <div class="col sm-2">
+            <div style="margin-top:19px;" class="pull-right"> 
+                <button type="button" class="btn btn-primary" (click)="join()">Join</button>
+                <button type="button" class="btn btn-default" (click)="refresh()">Leave</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" class="overflow-auto" style="text-align: left; background-color: #9b59b6; overflow-y: scroll; color: white;">
+        <div class="well"  style="height:200px; padding:15px;">
+            <div *ngFor="let item of empList">
+            <span *ngIf="item.etat == true"><strong>{{item.user}} : </strong> {{item.message}}</span>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="message">            
+        </div>
+        <div class="col-sm-2">
+                <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+  
+  
+</div>
